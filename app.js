@@ -1,4 +1,9 @@
-
+// TEMP: remove old Service Worker caches (one-time fix)
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.getRegistrations()
+    .then(rs => Promise.all(rs.map(r => r.unregister())))
+    .catch(() => {});
+}
 // HH:MM only + Tape/History + localStorage
 
 let input = "";

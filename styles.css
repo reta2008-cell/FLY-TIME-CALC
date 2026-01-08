@@ -112,6 +112,7 @@ body{
 
 /* Keys */
 .key{
+  pointer-events: auto;
   border:0;
   border-radius:14px;
   color:white;

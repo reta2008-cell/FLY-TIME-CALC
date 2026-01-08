@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>Time Calculator</title>
+
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0b0b0f" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <main class="app">
+    <header class="top">
+      <div class="title">Time Calculator</div>
+      <button class="iconBtn" id="clearAll" aria-label="Clear">🗑️</button>
+    </header>
+
+    <!-- Tape / History -->
+    <section class="tape" aria-label="History">
+      <div class="tapeInner" id="tape"></div>
+    </section>
+
+    <!-- Display -->
+    <section class="screen" aria-label="Display">
+      <div class="badge">HH:MM</div>
+      <div class="value" id="display">0:00</div>
+    </section>
+
+    <!-- Keypad -->
+    <section class="pad" aria-label="Keypad">
+      <div class="grid">
+        <button class="key num" data-num="7">7</button>
+        <button class="key num" data-num="8">8</button>
+        <button class="key num" data-num="9">9</button>
+        <button class="key op" data-op="+">+</button>
+
+        <button class="key num" data-num="4">4</button>
+        <button class="key num" data-num="5">5</button>
+        <button class="key num" data-num="6">6</button>
+        <button class="key op" data-op="-">−</button>
+
+        <button class="key num" data-num="1">1</button>
+        <button class="key num" data-num="2">2</button>
+        <button class="key num" data-num="3">3</button>
+        <button class="key op" data-op="=">=</button>
+
+        <button class="key num wide" data-num="0">0</button>
+        <button class="key util" id="backspace">⌫</button>
+        <button class="key clear" id="clearEntry">C</button>
+      </div>
+    </section>
+
+    <footer class="hint">
+      Digits only. Last 2 digits = minutes. Example: 1331 → 13:31
+    </footer>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

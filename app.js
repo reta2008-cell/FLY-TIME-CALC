@@ -1,4 +1,4 @@
-alert("JS Loaded #");
+
 // HH:MM only + Tape/History + localStorage
 
 let input = "";

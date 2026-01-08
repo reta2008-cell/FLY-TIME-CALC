@@ -154,3 +154,61 @@ if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./sw.js").catch(() => {});
   });
 }
+// ===== Button handling =====
+document.querySelectorAll(".key").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const k = btn.dataset.key;
+
+    if (!k) return;
+
+    // Numbers
+    if (/^\d$/.test(k)) {
+      input += k;
+      displayEl.textContent = formatHHMM(parseBufferToMinutes(input));
+      return;
+    }
+
+    // Clear
+    if (k === "C") {
+      input = "";
+      acc = null;
+      op = null;
+      tape = [];
+      displayEl.textContent = "0:00";
+      renderTape();
+      saveTape();
+      return;
+    }
+
+    // Backspace
+    if (k === "⌫") {
+      input = input.slice(0, -1);
+      displayEl.textContent = formatHHMM(parseBufferToMinutes(input));
+      return;
+    }
+
+    // Operators
+    if (k === "+" || k === "-") {
+      const val = parseBufferToMinutes(input);
+      acc = acc === null ? val : acc;
+      op = k;
+      input = "";
+      tape.push({ sym: k, val: acc });
+      renderTape();
+      saveTape();
+      return;
+    }
+
+    // Equals
+    if (k === "=" && op && acc !== null) {
+      const val = parseBufferToMinutes(input);
+      acc = op === "+" ? acc + val : acc - val;
+      input = "";
+      displayEl.textContent = formatHHMM(acc);
+      tape.push({ sym: "=", val: acc });
+      renderTape();
+      saveTape();
+      op = null;
+    }
+  });
+});
